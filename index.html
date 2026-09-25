@@ -1,0 +1,1273 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="Farm Management System - Salesforce Based Agricultural Management Project">
+
+    <title>Farm Management System | Project</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f7f9fc;
+            color: #263238;
+            line-height: 1.6;
+        }
+
+        /* ================= NAVBAR ================= */
+
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+
+            background: rgba(255,255,255,0.96);
+
+            box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+
+            padding: 18px 8%;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+            color: #2e7d32;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #37474f;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #2e7d32;
+        }
+
+        /* ================= HERO ================= */
+
+        .hero {
+            min-height: 90vh;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+
+            padding: 80px 20px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #e8f5e9,
+                    #f1f8e9,
+                    #ffffff
+                );
+        }
+
+        .hero-content {
+            max-width: 900px;
+        }
+
+        .badge {
+            display: inline-block;
+
+            background: #c8e6c9;
+            color: #1b5e20;
+
+            padding: 8px 18px;
+
+            border-radius: 30px;
+
+            font-size: 14px;
+            font-weight: bold;
+
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: 55px;
+            color: #1b5e20;
+            margin-bottom: 20px;
+        }
+
+        .hero h2 {
+            font-size: 25px;
+            color: #455a64;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: #607d8b;
+
+            max-width: 750px;
+
+            margin: auto auto 30px;
+        }
+
+        .buttons {
+            display: flex;
+
+            justify-content: center;
+
+            gap: 15px;
+
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+
+            padding: 14px 28px;
+
+            border-radius: 30px;
+
+            text-decoration: none;
+
+            font-weight: bold;
+
+            transition: 0.3s;
+        }
+
+        .btn-primary {
+            background: #2e7d32;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #1b5e20;
+            transform: translateY(-3px);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #2e7d32;
+
+            border: 2px solid #2e7d32;
+        }
+
+        .btn-secondary:hover {
+            background: #e8f5e9;
+            transform: translateY(-3px);
+        }
+
+        /* ================= GENERAL ================= */
+
+        section {
+            padding: 80px 8%;
+        }
+
+        .section-title {
+            text-align: center;
+
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 36px;
+            color: #263238;
+
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: #78909c;
+        }
+
+        /* ================= OVERVIEW ================= */
+
+        .overview {
+            max-width: 1100px;
+
+            margin: auto;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(300px, 1fr));
+
+            gap: 30px;
+        }
+
+        .overview-card {
+            background: white;
+
+            padding: 35px;
+
+            border-radius: 18px;
+
+            box-shadow:
+                0 8px 30px rgba(0,0,0,0.07);
+
+            transition: 0.3s;
+        }
+
+        .overview-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .overview-card h3 {
+            color: #2e7d32;
+            margin-bottom: 15px;
+        }
+
+        .overview-card p {
+            color: #607d8b;
+        }
+
+        /* ================= FEATURES ================= */
+
+        .features {
+            background: #ffffff;
+        }
+
+        .feature-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(220px, 1fr));
+
+            gap: 25px;
+        }
+
+        .feature-card {
+            background: #f8faf8;
+
+            padding: 30px;
+
+            border-radius: 16px;
+
+            border: 1px solid #e0e0e0;
+
+            transition: 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-6px);
+
+            box-shadow:
+                0 10px 25px rgba(0,0,0,0.08);
+        }
+
+        .feature-icon {
+            font-size: 35px;
+            margin-bottom: 15px;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 10px;
+            color: #2e7d32;
+        }
+
+        .feature-card p {
+            color: #607d8b;
+        }
+
+        /* ================= TECHNOLOGY ================= */
+
+        .tech-section {
+            background: #f1f8e9;
+        }
+
+        .tech-grid {
+            display: flex;
+
+            justify-content: center;
+
+            flex-wrap: wrap;
+
+            gap: 15px;
+        }
+
+        .tech {
+            background: white;
+
+            padding: 14px 25px;
+
+            border-radius: 30px;
+
+            font-weight: bold;
+
+            color: #33691e;
+
+            box-shadow:
+                0 4px 15px rgba(0,0,0,0.06);
+        }
+
+        /* ================= WORKFLOW ================= */
+
+        .workflow {
+            max-width: 1000px;
+
+            margin: auto;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(180px, 1fr));
+
+            gap: 20px;
+        }
+
+        .step {
+            background: white;
+
+            text-align: center;
+
+            padding: 25px;
+
+            border-radius: 15px;
+
+            box-shadow:
+                0 5px 20px rgba(0,0,0,0.07);
+        }
+
+        .step-number {
+            width: 45px;
+            height: 45px;
+
+            margin: auto auto 15px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background: #2e7d32;
+
+            color: white;
+
+            font-weight: bold;
+        }
+
+        .step h3 {
+            color: #37474f;
+
+            font-size: 17px;
+        }
+
+        /* ================= SCREENSHOTS ================= */
+
+        .screenshots {
+            background: white;
+        }
+
+        .gallery {
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(280px, 1fr));
+
+            gap: 25px;
+        }
+
+        .screenshot-card {
+            background: #f8faf8;
+
+            border-radius: 15px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .screenshot-card img {
+            width: 100%;
+
+            height: 220px;
+
+            object-fit: cover;
+
+            display: block;
+        }
+
+        .screenshot-card p {
+            padding: 15px;
+
+            text-align: center;
+
+            font-weight: bold;
+
+            color: #455a64;
+        }
+
+        /* ================= DOCUMENTATION ================= */
+
+        .documentation {
+            text-align: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #1b5e20,
+                    #388e3c
+                );
+
+            color: white;
+        }
+
+        .documentation h2 {
+            font-size: 38px;
+
+            margin-bottom: 15px;
+        }
+
+        .documentation p {
+            max-width: 700px;
+
+            margin: 0 auto 30px;
+
+            color: #e8f5e9;
+        }
+
+        .doc-button {
+            display: inline-block;
+
+            background: white;
+
+            color: #1b5e20;
+
+            padding: 15px 30px;
+
+            border-radius: 30px;
+
+            text-decoration: none;
+
+            font-weight: bold;
+
+            transition: 0.3s;
+        }
+
+        .doc-button:hover {
+            transform: translateY(-4px);
+
+            box-shadow:
+                0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        /* ================= DEMO ================= */
+
+        .demo {
+            text-align: center;
+        }
+
+        .demo-box {
+            max-width: 850px;
+
+            margin: auto;
+
+            background: white;
+
+            padding: 50px;
+
+            border-radius: 20px;
+
+            box-shadow:
+                0 8px 30px rgba(0,0,0,0.08);
+        }
+
+        .demo-box h2 {
+            color: #2e7d32;
+
+            margin-bottom: 15px;
+        }
+
+        .demo-box p {
+            color: #607d8b;
+
+            margin-bottom: 25px;
+        }
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            background: #263238;
+
+            color: white;
+
+            text-align: center;
+
+            padding: 35px 20px;
+        }
+
+        footer h3 {
+            margin-bottom: 10px;
+        }
+
+        footer p {
+            color: #b0bec5;
+        }
+
+        /* ================= MOBILE ================= */
+
+        @media(max-width: 768px) {
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 38px;
+            }
+
+            .hero h2 {
+                font-size: 20px;
+            }
+
+            section {
+                padding: 60px 5%;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ================= NAVIGATION ================= -->
+
+<nav>
+
+    <div class="nav-container">
+
+        <div class="logo">
+            🌱 Farm Management System
+        </div>
+
+        <ul class="nav-links">
+
+            <li>
+                <a href="#overview">Overview</a>
+            </li>
+
+            <li>
+                <a href="#features">Features</a>
+            </li>
+
+            <li>
+                <a href="#screenshots">Screenshots</a>
+            </li>
+
+            <li>
+                <a href="#documentation">Documentation</a>
+            </li>
+
+            <li>
+                <a href="#demo">Demo</a>
+            </li>
+
+        </ul>
+
+    </div>
+
+</nav>
+
+
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <span class="badge">
+            Salesforce Based Project
+        </span>
+
+        <h1>
+            Farm Management System
+        </h1>
+
+        <h2>
+            Digitalizing Agricultural Data Management
+        </h2>
+
+        <p>
+
+            A Salesforce-based Farm Management System designed
+            to manage farms, crops, farmers and buyers while
+            providing reports, dashboards, validation and
+            secure role-based access.
+
+        </p>
+
+        <div class="buttons">
+
+            <a
+                href="project-documentation.pdf"
+                target="_blank"
+                class="btn btn-primary">
+
+                📄 View Documentation
+
+            </a>
+
+
+            <a
+                href="#demo"
+                class="btn btn-secondary">
+
+                ▶ View Demo
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= PROJECT OVERVIEW ================= -->
+
+<section id="overview">
+
+    <div class="section-title">
+
+        <h2>
+            Project Overview
+        </h2>
+
+        <p>
+            A centralized platform for modern farm management
+        </p>
+
+    </div>
+
+
+    <div class="overview">
+
+        <div class="overview-card">
+
+            <h3>
+                🎯 Problem
+            </h3>
+
+            <p>
+
+                Agricultural information may be maintained
+                manually through registers, files and
+                spreadsheets, making data management,
+                reporting and monitoring difficult.
+
+            </p>
+
+        </div>
+
+
+        <div class="overview-card">
+
+            <h3>
+                💡 Solution
+            </h3>
+
+            <p>
+
+                The Farm Management System provides centralized
+                Salesforce-based data management for farms,
+                crops, farmers and buyers.
+
+            </p>
+
+        </div>
+
+
+        <div class="overview-card">
+
+            <h3>
+                📊 Impact
+            </h3>
+
+            <p>
+
+                The system supports organized data management,
+                validation, reporting, dashboards and
+                data-driven farm management.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= FEATURES ================= -->
+
+<section id="features" class="features">
+
+    <div class="section-title">
+
+        <h2>
+            Key Features
+        </h2>
+
+        <p>
+            Main capabilities of the Farm Management System
+        </p>
+
+    </div>
+
+
+    <div class="feature-grid">
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                🌾
+            </div>
+
+            <h3>
+                Farm Management
+            </h3>
+
+            <p>
+                Maintain centralized farm information
+                and related agricultural data.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                🌱
+            </div>
+
+            <h3>
+                Crop Management
+            </h3>
+
+            <p>
+                Manage crop details, planting dates,
+                harvest information and yield data.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                👨‍🌾
+            </div>
+
+            <h3>
+                Farmer Management
+            </h3>
+
+            <p>
+                Store and manage farmer information
+                through structured records.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                🛒
+            </div>
+
+            <h3>
+                Buyer Management
+            </h3>
+
+            <p>
+                Maintain buyer contact, email,
+                address and buyer type information.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                ✅
+            </div>
+
+            <h3>
+                Data Validation
+            </h3>
+
+            <p>
+                Validation rules help prevent incorrect
+                or incomplete records.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                🔐
+            </div>
+
+            <h3>
+                Role-Based Access
+            </h3>
+
+            <p>
+                Profiles, roles and sharing rules support
+                controlled access to system information.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                📈
+            </div>
+
+            <h3>
+                Reports
+            </h3>
+
+            <p>
+                Generate reports to analyze farm,
+                crop and buyer information.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                📊
+            </div>
+
+            <h3>
+                Dashboards
+            </h3>
+
+            <p>
+                Visualize important agricultural
+                information using dashboards.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= TECHNOLOGY ================= -->
+
+<section class="tech-section">
+
+    <div class="section-title">
+
+        <h2>
+            Technology Stack
+        </h2>
+
+        <p>
+            Technologies and Salesforce features used
+        </p>
+
+    </div>
+
+
+    <div class="tech-grid">
+
+        <span class="tech">
+            Salesforce
+        </span>
+
+        <span class="tech">
+            Salesforce Lightning UI
+        </span>
+
+        <span class="tech">
+            Custom Objects
+        </span>
+
+        <span class="tech">
+            Validation Rules
+        </span>
+
+        <span class="tech">
+            Reports
+        </span>
+
+        <span class="tech">
+            Dashboards
+        </span>
+
+        <span class="tech">
+            Profiles & Roles
+        </span>
+
+        <span class="tech">
+            Sharing Rules
+        </span>
+
+    </div>
+
+</section>
+
+
+<!-- ================= WORKFLOW ================= -->
+
+<section>
+
+    <div class="section-title">
+
+        <h2>
+            System Workflow
+        </h2>
+
+        <p>
+            Basic process followed by the application
+        </p>
+
+    </div>
+
+
+    <div class="workflow">
+
+
+        <div class="step">
+
+            <div class="step-number">
+                1
+            </div>
+
+            <h3>
+                Login
+            </h3>
+
+        </div>
+
+
+        <div class="step">
+
+            <div class="step-number">
+                2
+            </div>
+
+            <h3>
+                Access Application
+            </h3>
+
+        </div>
+
+
+        <div class="step">
+
+            <div class="step-number">
+                3
+            </div>
+
+            <h3>
+                Enter Farm & Crop Data
+            </h3>
+
+        </div>
+
+
+        <div class="step">
+
+            <div class="step-number">
+                4
+            </div>
+
+            <h3>
+                Manage Farmers & Buyers
+            </h3>
+
+        </div>
+
+
+        <div class="step">
+
+            <div class="step-number">
+                5
+            </div>
+
+            <h3>
+                Generate Reports
+            </h3>
+
+        </div>
+
+
+        <div class="step">
+
+            <div class="step-number">
+                6
+            </div>
+
+            <h3>
+                Analyze Dashboard
+            </h3>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= SCREENSHOTS ================= -->
+
+<section id="screenshots" class="screenshots">
+
+    <div class="section-title">
+
+        <h2>
+            Project Screenshots
+        </h2>
+
+        <p>
+            Screenshots of the Farm Management System
+        </p>
+
+    </div>
+
+
+    <div class="gallery">
+
+
+        <div class="screenshot-card">
+
+            <img
+                src="screenshots/home.png"
+                alt="Farm Management System Home">
+
+            <p>
+                Salesforce Home
+            </p>
+
+        </div>
+
+
+        <div class="screenshot-card">
+
+            <img
+                src="screenshots/farm.png"
+                alt="Farm Management">
+
+            <p>
+                Farm Management
+            </p>
+
+        </div>
+
+
+        <div class="screenshot-card">
+
+            <img
+                src="screenshots/crop.png"
+                alt="Crop Management">
+
+            <p>
+                Crop Management
+            </p>
+
+        </div>
+
+
+        <div class="screenshot-card">
+
+            <img
+                src="screenshots/farmer.png"
+                alt="Farmer Management">
+
+            <p>
+                Farmer Management
+            </p>
+
+        </div>
+
+
+        <div class="screenshot-card">
+
+            <img
+                src="screenshots/buyer.png"
+                alt="Buyer Management">
+
+            <p>
+                Buyer Management
+            </p>
+
+        </div>
+
+
+        <div class="screenshot-card">
+
+            <img
+                src="screenshots/reports.png"
+                alt="Reports">
+
+            <p>
+                Reports
+            </p>
+
+        </div>
+
+
+        <div class="screenshot-card">
+
+            <img
+                src="screenshots/dashboard.png"
+                alt="Dashboard">
+
+            <p>
+                Dashboard
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= DOCUMENTATION ================= -->
+
+<section id="documentation" class="documentation">
+
+    <h2>
+        📄 Project Documentation
+    </h2>
+
+    <p>
+
+        Read the complete project documentation containing
+        the project overview, requirements, architecture,
+        planning, Salesforce configuration, testing,
+        advantages, conclusion and future scope.
+
+    </p>
+
+    <a
+        href="project-documentation.pdf"
+        target="_blank"
+        class="doc-button">
+
+        📖 Open Full Documentation
+
+    </a>
+
+</section>
+
+
+<!-- ================= DEMO ================= -->
+
+<section id="demo" class="demo">
+
+    <div class="section-title">
+
+        <h2>
+            Project Demo
+        </h2>
+
+        <p>
+            See the Farm Management System in action
+        </p>
+
+    </div>
+
+
+    <div class="demo-box">
+
+        <h2>
+            🎥 Project Demonstration
+        </h2>
+
+        <p>
+
+            Click the button below to watch the project
+            demonstration video.
+
+        </p>
+
+
+        <!--
+        Replace the # below with your Google Drive,
+        YouTube or other video link.
+        -->
+
+        <a
+            href="#"
+            target="_blank"
+            class="btn btn-primary">
+
+            ▶ Watch Demo Video
+
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <h3>
+        🌱 Farm Management System
+    </h3>
+
+    <p>
+        Salesforce-Based Agricultural Management Project
+    </p>
+
+    <p>
+        © 2026 Project Documentation
+    </p>
+
+</footer>
+
+
+</body>
+
+</html>
